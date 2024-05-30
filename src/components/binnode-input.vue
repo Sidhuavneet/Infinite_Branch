@@ -2,7 +2,7 @@
 <template>
     <div>
         <input ref="input" class="binnode-input" :style="{'width': width + 'px' }" :value="value"
-            @input="$emit('input', $event.target.value)" @blur="$emit('blur')" @focus="onFocus">
+            @input="$emit('input', $event.target.value)" @blur="$emit('blur')" @focus="onFocus" >
         <span ref="widthIndicator"
             style="display: inline-block; visibility: hidden; position: absolute;">{{ value }}</span>
     </div>

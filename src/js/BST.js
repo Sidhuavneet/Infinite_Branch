@@ -10,10 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { BinTree } from "./BinTree";
 import { NStatus, TreeUtil, BinNode } from "./BinNode";
 export class BST extends BinTree {
-    /* **************************************** */
-    /*           Synchronous Methods            */
-    /* **************************************** */
-    // 3 + 4 Reconstruction of BBST
     connect34(a, b, c, t0, t1, t2, t3) {
         this.reAttachAsLC(a, t0);
         this.reAttachAsRC(a, t1);
@@ -26,7 +22,6 @@ export class BST extends BinTree {
         this.updateHeight(b);
         return b;
     }
-    // Rotate at the grandchild of lowest unbalanced bbst node
     rotateAt(x) {
         let p = x.parent;
         let g = p.parent;
@@ -180,15 +175,15 @@ export class BST extends BinTree {
         let mis = null;
         let message;
         if (!this.checkUnique(sequence))
-            message = "WARNING: 当前实现禁止重复值!";
-        for (let i = 0; i < sequence.length - 1; i++) { // BugFixed0305
+            message = "WARNING: The current implementation prohibits duplicate values!";
+        for (let i = 0; i < sequence.length - 1; i++) { 
             if (sequence[i].data >= sequence[i + 1].data) {
                 status = false;
                 mis = sequence[i];
                 break;
             }
         }
-        message = (mis === null) ? "" : `WARNING: 节点${mis.data}处不满足顺序性!`;
+        message = (mis === null) ? "" : `WARNING: nodal${mis.data}Sequentiality is not satisfied at!`;
         return [status, message];
     }
 }

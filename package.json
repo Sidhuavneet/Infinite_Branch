@@ -9,16 +9,6 @@
     "tsc": "tsc --build tsconfig.json --watch",
     "build": "tsc --build tsconfig.json && webpack --config webpack.config.js --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hwc0919/TreePlayground.git"
-  },
-  "author": "nitromelon",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hwc0919/TreePlayground/issues"
-  },
-  "homepage": "https://github.com/hwc0919/TreePlayground",
   "devDependencies": {
     "css-loader": "^3.4.2",
     "style-loader": "^1.1.3",

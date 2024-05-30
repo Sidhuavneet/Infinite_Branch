@@ -227,7 +227,7 @@ export class BinTree {
             extrNodes.push({ x: 0, y: 0, isRoot: true });
             return structInfo;
         }
-        // 常数设置:
+        // Constant Setting.
         let spacingX = 80;
         if (this._size > 20)
             spacingX = 70;
@@ -238,7 +238,7 @@ export class BinTree {
             spacingY = 70;
         else if (this._root.height > 20)
             spacingY = 60;
-        // 逐层遍历
+        // layer-by-layer traversal
         this._root.y = 0;
         let levels = [[this._root]];
         nodes.push(this._root);
@@ -248,7 +248,7 @@ export class BinTree {
             for (let j = 0; j < levels[i].length; j++) {
                 let node = levels[i][j];
                 let levelY = spacingY * (i + 1);
-                // 为外部节点添加一个外部节点孩子
+                // Adding an external node child to an external node
                 if (node.lc === undefined) {
                     levels[i + 1].push({ x: node.x, y: levelY, parent: node });
                     continue;
@@ -257,7 +257,7 @@ export class BinTree {
                 if (node.status !== NStatus.deprecated)
                     node.status = NStatus.normal;
                 let deltaX = Math.max(0, node.data.toString().length - 2) * 6;
-                // 为内部节点添加两个孩子
+                // Adding two children to an internal node
                 if (node.lc) {
                     reachBottom = false;
                     node.lc.x = node.x - deltaX;
@@ -286,7 +286,7 @@ export class BinTree {
             if (reachBottom)
                 break;
         }
-        // 计算最底层横坐标
+        // Calculate the bottom horizontal coordinate
         let lastLevel = levels[levels.length - 1];
         let deltaL;
         let deltaR = lastLevel[1].x - lastLevel[0].x;
@@ -299,11 +299,11 @@ export class BinTree {
             }
         }
         lastLevel.forEach(node => { node.fullSize = 1; });
-        // 逐层反推横坐标
+        // Layer-by-layer backpropagation of horizontal coordinates
         for (let i = levels.length - 1; i >= 1; i--) {
             let curLevel = levels[i];
             for (let j = 0; j < curLevel.length;) {
-                // 父亲是内部节点
+                // The father is an internal node.
                 let jParent = curLevel[j].parent;
                 if (j < curLevel.length - 1 && jParent == curLevel[j + 1].parent) {
                     let w1 = 5 + curLevel[j].fullSize;
@@ -320,7 +320,7 @@ export class BinTree {
                 }
             }
         }
-        // 调整根节点至中心, 顺便更新高度(若不更新, 黑高度将错误)
+        //Adjust the root node to the center, and update the height (if not, the black height will be wrong).
         let deltaX = this._root.x;
         this._root.x = 0;
         for (let i = levels.length - 1; i >= 1; i--) {
@@ -333,11 +333,11 @@ export class BinTree {
             }
         }
         this.updateHeight(this._root);
-        // 添加内部边和外部边
+        // Adding interior and exterior edges
         for (let i = levels.length - 1; i >= 1; i--) {
             let curLevel = levels[i];
             for (let j = 0; j < curLevel.length;) {
-                // 仅当父亲是内部节点时添加边
+                // Add edges only if the father is an internal node
                 let jParent = curLevel[j].parent;
                 if (j < curLevel.length - 1 && jParent == curLevel[j + 1].parent) {
                     let leftEdge = [curLevel[j].x, jParent.y, jParent.x - curLevel[j].x - 29, spacingY - 29];

@@ -16,9 +16,6 @@ var tp = new Vue({
         availTreeTypes: { "BinTree": true, "BST": true, "AVL": true, "Splay": true, "RedBlack": true, "Heap": false },
         treeClassMap: { "BinTree": BinTree, "BST": BST, "AVL": AVL, "Splay": Splay, "RedBlack": RedBlack },
         trees: { "BinTree": null, "BST": null, "AVL": null, "Splay": null, "RedBlack": null },
-        // tree: Computed
-        // curTreeClass: Computed
-        // curTreeType: Computed
         structInfo: {
             nodes: [],  // Array<BinNode<T>>
             extrNodes: [],  // Array of BinNode<T> like Object. Has `x`, `y`, `parent` properties.
@@ -27,11 +24,11 @@ var tp = new Vue({
         },
         topSequence: [],
         commonParams: {
-            curTreeType: "BST", // Important : Always use as `this.curTreeType`.
-            treeScale: 100, // in %
-            interval: 500   // in ms
+            curTreeType: "BST", 
+            treeScale: 100,
+            interval: 800   
         },
-        opLock: false,  // Operation Lock
+        opLock: false,
         messages: {
             left: "", right: ""
         },
@@ -63,7 +60,6 @@ var tp = new Vue({
             }
             this.reset(false);
         },
-        // Reset, clear all messages and lock. Will call update() inside.
         reset(all = true) {
             if (all) {
                 this.messages = { left: "", right: "" };
@@ -75,9 +71,7 @@ var tp = new Vue({
             this.update();
             this.structInfo.nodes.forEach((node) => { node.status = NStatus.normal; });
         },
-        // Update, update tree structure ONLY! Then save to LocalStorage. Please Always call explicitly!!!
         update() {
-            // console.log("Update");
             this.structInfo = this.tree.calStructInfo();
             // Save to localStorage
             localStorage["temp" + this.curTreeType] = JSON.stringify(JSON.decycle(this.tree));
@@ -118,7 +112,6 @@ var tp = new Vue({
                 setTimeout(() => { resolve(); }, interval);
             })
         },
-        // Traversal and Display in Async way.
         async traversal(method) {
             if (this.isLocked()) return false;
 
@@ -132,8 +125,8 @@ var tp = new Vue({
             }
             // Display traversal sequence
             this.topSequence = [];
-            this.messages.left = method == 0 ? "先序遍历" : (method == 1 ? "中序遍历" :
-                (method == 2 ? "后续遍历" : (method == 3 ? "层次遍历" : "")));
+            this.messages.left = method == 0 ? "pre-order traversal" : (method == 1 ? "in-order traversal" :
+                (method == 2 ? "post-order traversal" : (method == 3 ? "level-order traversal" : "")));
             this.opLock = true;
             await this._printSequenceAsyc(sequence).catch(() => { this.update(); });
             this.opLock = false;

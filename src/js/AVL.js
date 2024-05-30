@@ -10,9 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { BST } from "./BST";
 import { BinNode, TreeUtil, NStatus } from "./BinNode";
 export class AVL extends BST {
-    /* **************************************** */
-    /*           Synchronous Methods            */
-    /* **************************************** */
     insert(e) {
         if (!this._root) {
             this._size++;
@@ -25,7 +22,6 @@ export class AVL extends BST {
         x = new BinNode(e, this._hot);
         this._size++;
         (e < this._hot.data) ? this._hot.lc = x : this._hot.rc = x;
-        // check upwards until fix avlUnBalanced
         this.solveInsertUnbalance();
         return x;
     }
@@ -45,7 +41,6 @@ export class AVL extends BST {
             return false;
         this.removeAt(x);
         this._size--;
-        // reBalance every ancestor
         this.solveRemoveUnbalance();
         return true;
     }
@@ -56,9 +51,6 @@ export class AVL extends BST {
             this.updateHeight(g);
         }
     }
-    /* **************************************** */
-    /*          Asynchronous Methods            */
-    /* **************************************** */
     solveRemoveUnbalanceAsync(tp) {
         return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
             for (let g = this._hot; g; g = g.parent) {
@@ -79,9 +71,6 @@ export class AVL extends BST {
             return resolve(true);
         }));
     }
-    /* **************************************** */
-    /*             Static Methods               */
-    /* **************************************** */
     static genSampleTree() {
         let tree = new AVL();
         let N = 5 + (Math.random() < 0.5 ? Math.ceil(Math.random() * 4) : Math.ceil(Math.random() * 15));
@@ -102,7 +91,7 @@ export class AVL extends BST {
                 mis = sequence[i];
                 break;
             }
-        let message = (mis === null) ? "" : `节点${mis.data}处不满足AVL平衡!`;
+        let message = (mis === null) ? "" : `nodal${mis.data}AVL equilibrium is not satisfied at!`;
         return [status, message];
     }
 }

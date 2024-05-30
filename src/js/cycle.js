@@ -1,27 +1,3 @@
-/*
-    cycle.js
-    2018-05-15
-
-    Public Domain.
-
-    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-
-    This code should be minified before deployment.
-    See http://javascript.crockford.com/jsmin.html
-
-    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU DO
-    NOT CONTROL.
-*/
-
-// The file uses the WeakMap feature of ES6.
-
-/*jslint eval */
-
-/*property
-    $ref, decycle, forEach, get, indexOf, isArray, keys, length, push,
-    retrocycle, set, stringify, test
-*/
-
 if (typeof JSON.decycle !== "function") {
     JSON.decycle = function decycle(object, replacer) {
         "use strict";
@@ -40,15 +16,6 @@ if (typeof JSON.decycle !== "function") {
 //      var a = [];
 //      a[0] = a;
 //      return JSON.stringify(JSON.decycle(a));
-
-// produces the string '[{"$ref":"$"}]'.
-
-// If a replacer function is provided, then it will be called for each value.
-// A replacer function receives a value and returns a replacement value.
-
-// JSONPath is used to locate the unique object. $ indicates the top level of
-// the object or array. [NUMBER] or [STRING] indicates a child element or
-// property.
 
         var objects = new WeakMap();     // object to path mappings
 

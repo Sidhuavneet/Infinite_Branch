@@ -10,7 +10,7 @@
     border-style: solid;
     border-radius: 10px;
     border-color: var(--normal-bdcolor);
-    /* 居中 */
+    /* centering */
     transform: translate(-50%, -50%);
     font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
     font-size: var(--normal-font-size);
