@@ -1,87 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <noscript>Please enable javascript to use this tool.</noscript>
-    <script>
-        var ratio = window.devicePixelRatio;
-        if (typeof ratio === "number") var scale = 1 / ratio;
-        else var scale = 1;
-        document.write(`<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=${scale < 1 ? 0.7 : 1}">`);
-    </script>
-    <link rel="Shortcut Icon" href="/favicon.ico">
-    <title>TreePlayground</title>
-    <script src="./style.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Visualizer</title>
+    <link rel="stylesheet" href="ststyle.css">
 </head>
+<body>
 
-<body style="background-color:rgb(224, 111, 111)">
-    <div id="header" style="position: fixed; left: 5px; top: 5px;">
+<!-- Startup Welcome Page -->
+<!-- <header class="startup-welcome">
+    
+    <nav class="navbar"> -->
+        <!-- Navbar items go here -->
+    <!-- </nav>
+</header> -->
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="project-info">
+        <h1 class="project-name">Infinite Branch: mapping the diversity of trees</h1>
+        <hr>
     </div>
-    <div id="TreePlayground" @mousemove='onTPMouseMove($event)' @touchmove='onTPMouseMove($event)'
-        @mouseup="onTPMouseUp" @touchend="onTPMouseUp">
-        <!-- Top Toolbar -->
-        <div class="top-toolbar" >
-            <!-- <button class="btn btn-primary top-toolbar-item" type="button"
-                @click="loadSampleTree(); update()">Sample</button> -->
-            <button class="btn btn-primary top-toolbar-item" type="button" title="Preorder Traversal"
-                @click="traversal(0)">Pre-Order </button>
-            <button class="btn btn-primary top-toolbar-item" type="button" title="Inorder Traversal"
-                @click="traversal(1)">In-Order </button>
-            <button class="btn btn-primary top-toolbar-item" type="button" title="Postorder Traversal"
-                @click="traversal(2)">Post-Order </button>
-            <button class="btn btn-primary top-toolbar-item" type="button" title="Levelorder Traversal"
-                @click="traversal(3)">Level-Order </button>
-            
+    <div class="content-sections">
+        <div class="left-section">
+            <img src="https://austingwalters.com/wp-content/uploads/2014/10/binary-tree-1-order.gif" alt="Project Image">
         </div>
-        <!-- Left Toolbar -->
-        <div class="left-toolbar">
-            <button class="btn btn-primary left-toolbar-item" type="button" @click="reset">Reset</button>
-            <select id="tree-type-selector" class="left-toolbar-item" v-model="curTreeType">
-                <option v-for="status, ttype in availTreeTypes" v-text="ttype" :value="ttype" :disabled="!status">
-                </option>
-            </select>
-            <div id="tree-scale-ranger" class="left-toolbar-item">
-                <h4>Scale: <label v-text="commonParams.treeScale + '%'"></h4>
-                <input type="range" min="20" max="180" value="100" v-model.number="treeScale">
-            </div>
-        </div>
-        <!-- Tree Visualization Part -->
-        <div class="tree" ref="tree" :style="adjustScale" style="transform-origin: top;">
-            <div class="tree-dragging-btn" @mousedown.self="onTreeMouseDown" @touchstart.self.prevent="onTreeMouseDown">
-            </div>
-            <!-- Top Functional Node -->
-            <top-binnode id="top-function-node" :data="topSequence" @top-build="onTopBuild" @top-insert="onTopInsert"
-                @top-search="onTopSearch" @top-help="onTopHelp" @top-proper="onTopProper"></top-binnode>
-            <div class="left-message" v-text="messages.left">
-                <span class="loading" style="display: inline-block; width: 80px;">loading</span></div>
-            <div class="right-message" v-text="messages.right"><span class="loading">Loading</span></div>
-
-            <!-- Internal Tree Nodes -->
-            <binnode v-for="node, ind in structInfo.nodes" :node="node" :key="`intrNode${ind}`"
-                :class="nodeColorClass(node.color)" @remove-below="onRemoveBelow" @remove-one="onRemoveOne"
-                @intr-update="onIntrUpdate">
-            </binnode>
-
-            <!-- External Tree Nodes -->
-            <extr-binnode v-for="node, ind in structInfo.extrNodes" :node="node" :key="`extrNode${ind}`"
-                @extr-insert="onExtrInsert">
-            </extr-binnode>
-
-            <!-- Internal Tree Edges -->
-            <div class="left-edge" v-for="e, ind in structInfo.edges[0]" :key="`intrLeftEdge${ind}`"
-                :style="{'left': e[0]+'px', 'top': e[1]+'px', 'width': e[2]+'px', 'height': e[3]+'px'}"></div>
-            <div class="right-edge" v-for="e, ind in structInfo.edges[1]" :key="`intrRightEdge${ind}`"
-                :style="{'left': e[0]+'px', 'top': e[1]+'px', 'width': e[2]+'px', 'height': e[3]+'px'}"></div>
-
-            <!-- External Tree Edges -->
-            <div class="left-edge extr-edge" v-for="e, ind in structInfo.extrEdges[0]" :key="`extrLeftEdge${ind}`"
-                :style="{'left': e[0]+'px', 'top': e[1]+'px', 'width': e[2]+'px', 'height': e[3]+'px'}"></div>
-            <div class="right-edge extr-edge" v-for="e, ind in structInfo.extrEdges[1]" :key="`extrRightEdge${ind}`"
-                :style="{'left': e[0]+'px', 'top': e[1]+'px', 'width': e[2]+'px', 'height': e[3]+'px'}"></div>
+        <div class="right-section">
+            <p>Welcome to Team Visualizer! This project helps you visualize tree data structures.</p>
+            <a href="./gooo.html" class="start-visualizing">Start Visualizing</a>
         </div>
     </div>
-    <script src="./bundle.js"></script>
+</main>
+
+<!-- Team Names -->
+<footer class="team-names">
+    <div class="mentor">Mentor: Dr.Lalatendu Behera</div>
+    <div>Teammates:</div>
+    <ul>
+        <li>Avneet Singh Sidhu 21103031</li>
+        <li>Manav Bhagat 21103082</li>
+        <li>Vedansh Koccher 21103159</li>
+    </ul>
+</footer>
+
 </body>
-
 </html>

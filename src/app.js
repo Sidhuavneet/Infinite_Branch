@@ -13,7 +13,7 @@ import { RedBlack } from "./js/RedBlack"
 var tp = new Vue({
     el: "#TreePlayground",
     data: {
-        availTreeTypes: { "BinTree": true, "BST": true, "AVL": true, "Splay": true, "RedBlack": true, "Heap": false },
+        availTreeTypes: { "BinTree": true, "BST": true, "AVL": true, "Splay": true, "RedBlack": true },
         treeClassMap: { "BinTree": BinTree, "BST": BST, "AVL": AVL, "Splay": Splay, "RedBlack": RedBlack },
         trees: { "BinTree": null, "BST": null, "AVL": null, "Splay": null, "RedBlack": null },
         structInfo: {
@@ -337,10 +337,10 @@ var tp = new Vue({
         // Rebuild with proper traversal sequence
         onTopBuild(sequence) {
             if (this.curTreeType !== "BinTree")
-                this.alertAsync("请自行保证合法性, 不合法的树会造成操作异常.", 2500);
+                this.alertAsync("Please ensure the legality of the tree, illegal tree will cause abnormal operation..", 2500);
             this.tree = this.curTreeClass.properRebuild(sequence);
             this.update();
-            this.showMessage("真二叉树层次序列构建");
+            this.showMessage("Hierarchical Sequence Construction of True Binary Trees");
             let res = this.curTreeClass.checkValidity(this.tree);
             if (!res[0]) this.alertAsync(res[1], 2500);
         },
