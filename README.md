@@ -4,4 +4,4 @@ Teammates:
 
         Avneet Singh Sidhu 21103031
         Manav Bhagat 21103082
-        Vedansh Koccher 21103159
+        Vedansh Kochher 21103159
